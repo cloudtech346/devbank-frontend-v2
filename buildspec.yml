@@ -3,13 +3,13 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 872352220406.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 872352220406.dkr.ecr.us-east-1.amazonaws.com
   build:
     commands:
       - echo Build started on `date`
       - docker build -t devbank-frontend .
-      - docker tag devbank-frontend:latest 872352220406.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/devbank-frontend:latest
+      - docker tag devbank-frontend:latest 872352220406.dkr.ecr.us-east-1.amazonaws.com/devbank-frontend:latest
   post_build:
     commands:
       - echo Build completed on `date`
-      - docker push 872352220406.dkr.ecr.$AWS_DEFAULT
+      - docker push 872352220406.dkr.ecr.us-east-1.amazonaws.com/devbank-frontend:latest
