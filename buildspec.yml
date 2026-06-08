@@ -8,6 +8,7 @@ phases:
     commands:
       - echo Build started on `date`
       - docker build -t devbank-frontend .
+      - docker images   # verify image built
       - docker tag devbank-frontend:latest 872352220406.dkr.ecr.us-east-1.amazonaws.com/devbank-frontend:latest
   post_build:
     commands:
