@@ -1,25 +1,38 @@
-import React, { useEffect, useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { useEffect, useState } from "react";
 
 function App() {
-  const [message, setMessage] = useState("Loading...");
+
+  const [msg, setMsg] = useState("Loading...");
 
   useEffect(() => {
-    fetch("http://13.221.131.115:5000/testAPI")
-      .then((res) => res.text())
+
+    fetch("http://BACKEND_PUBLIC_IP:5000/api/time")
+      .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        setMessage(data);
+        setMsg(data.message);
       })
-      .catch((err) => {
-        console.error(err);
-        setMessage("API Error");
+      .catch(() => {
+        setMsg("Backend Connection Failed");
       });
+
   }, []);
 
   return (
-    <div style={{ textAlign: "center", marginTop: "100px" }}>
-      <h1>HELLO V4</h1>
-      <h2>{message}</h2>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>{msg}</p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
     </div>
   );
 }
