@@ -4,7 +4,7 @@ function App() {
   const [message, setMessage] = useState("Loading...");
 
   useEffect(() => {
-    fetch("http://localhost:5000/testAPI")
+    fetch("http://13.221.131.115:5000/testAPI")
       .then((res) => res.text())
       .then((data) => {
         console.log(data);
